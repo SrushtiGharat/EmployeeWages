@@ -4,21 +4,24 @@ using System.Globalization;
 namespace EmployeeWages
 {
     class Program
-    {
+    {   public const int IS_FULL_TIME = 2;
+        public const int IS_PART_TIME = 1;
+        public const int MONTHLY_WORKING_DAYS = 20;
+        public const int MAX_WORKING_HOURS = 100;
+        public const int EMP_RATE_PER_HOUR = 20;
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Employee Wage Calculation Program");
-            int IS_FULL_TIME = 2;
-            int IS_PART_TIME = 1;
-            int MONTHLY_WORKING_DAYS = 20;
-            int MAX_WORKING_HOURS = 100;
-            int EMP_RATE_PER_HOUR = 20;
 
+            int totalEmpHrs = getEmployeeHrs();
+            ComputeWage(totalEmpHrs);
+        }
+        public static int getEmployeeHrs()
+        {
             int empHrs = 0;
-            int empWage = 0;
             int totalEmpHrs = 0;
             int i = 0;
-           
+
             Random random = new Random();
 
             while (i < MONTHLY_WORKING_DAYS && totalEmpHrs < MAX_WORKING_HOURS)
@@ -46,7 +49,11 @@ namespace EmployeeWages
                 i++;
                 totalEmpHrs = totalEmpHrs + empHrs;
             }
-            empWage = totalEmpHrs * EMP_RATE_PER_HOUR;
+            return totalEmpHrs;
+        }
+        public static void ComputeWage(int totalEmpHrs)
+        {
+            int empWage = totalEmpHrs * EMP_RATE_PER_HOUR;
             Console.WriteLine("Total Working Hours :" + totalEmpHrs);
             Console.WriteLine("Monthly Employee Wage:" + empWage);
 
