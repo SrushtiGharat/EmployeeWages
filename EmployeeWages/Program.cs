@@ -12,9 +12,7 @@ namespace EmployeeWages
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Employee Wage Calculation Program");
-
-            int totalEmpHrs = getEmployeeHrs();
-            ComputeWage(totalEmpHrs);
+            ComputeWage();
         }
         public static int getEmployeeHrs()
         {
@@ -51,8 +49,9 @@ namespace EmployeeWages
             }
             return totalEmpHrs;
         }
-        public static void ComputeWage(int totalEmpHrs)
+        public static void ComputeWage()
         {
+            int totalEmpHrs = getEmployeeHrs();
             int empWage = totalEmpHrs * EMP_RATE_PER_HOUR;
             Console.WriteLine("Total Working Hours :" + totalEmpHrs);
             Console.WriteLine("Monthly Employee Wage:" + empWage);
