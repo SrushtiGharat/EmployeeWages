@@ -4,18 +4,23 @@ using System.Globalization;
 
 namespace EmployeeWages
 {
-    class Program
+    class EmployeeWageBuilder
     {
         public const int IS_FULL_TIME = 2;
         public const int IS_PART_TIME = 1;
-
-        static void Main(string[] args)
+        
+        String companyName;
+        int empRatePerHour;
+        int noOfWorkingDays;
+        int maxWorkingHrs;
+        public EmployeeWageBuilder(String companyName,int empRatePerHour,int noOfWorkingDays,int maxWorkingHrs)
         {
-            Console.WriteLine("Welcome to Employee Wage Calculation Program");
-            ComputeWage("DMart",20,25,100);
-            ComputeWage("Big Bazaar", 10, 20, 80);
+            this.companyName = companyName;
+            this.empRatePerHour = empRatePerHour;
+            this.noOfWorkingDays = noOfWorkingDays;
+            this.maxWorkingHrs = maxWorkingHrs;
         }
-        public static int GetEmployeeHrs()
+        public int GetEmployeeHrs()
         {
             int empHrs = 0;
             Random random = new Random();
@@ -26,10 +31,10 @@ namespace EmployeeWages
                 case 0:
                     empHrs = 0;
                     break;
-                case 1:                 
+                case 1:
                     empHrs = 4;
                     break;
-                case 2:                   
+                case 2:
                     empHrs = 8;
                     break;
                 default:
@@ -39,19 +44,34 @@ namespace EmployeeWages
             }
             return empHrs;
         }
-        public static void ComputeWage(String company, int empRate, int noOfWorkingDays, int maxWorkingHrs)
+        public void ComputeWage()
         {
             int i = 0;
             int totalEmpHrs = 0;
             int totalWorkingDays = 0;
-            while(i < noOfWorkingDays && totalEmpHrs <= maxWorkingHrs)
+            while (i < noOfWorkingDays && totalEmpHrs <= maxWorkingHrs)
             {
                 totalEmpHrs = totalEmpHrs + GetEmployeeHrs();
                 i++;
             }
-            double empWage = totalEmpHrs * empRate;
+            double empWage = totalEmpHrs * empRatePerHour;
             Console.WriteLine("Total Employee Hrs :" + totalEmpHrs);
-            Console.WriteLine("Employee Wage for company " + company + " is " + empWage);
+            Console.WriteLine("Employee Wage for company " + companyName + " is " + empWage);
         }
+
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Welcome to Employee Wage Calculation Program");
+            EmployeeWageBuilder dMart = new EmployeeWageBuilder("DMart", 20, 25, 100);
+            EmployeeWageBuilder bigBazaar = new EmployeeWageBuilder("Big Bazaar", 10, 20, 80);
+            dMart.ComputeWage();
+            bigBazaar.ComputeWage();
+        }
+       
+        
+        
     }
 }
