@@ -1,61 +1,57 @@
-﻿using System;
+﻿
+using System;
 using System.Globalization;
 
 namespace EmployeeWages
 {
     class Program
-    {   public const int IS_FULL_TIME = 2;
+    {
+        public const int IS_FULL_TIME = 2;
         public const int IS_PART_TIME = 1;
-        public const int MONTHLY_WORKING_DAYS = 20;
-        public const int MAX_WORKING_HOURS = 100;
-        public const int EMP_RATE_PER_HOUR = 20;
+
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Employee Wage Calculation Program");
-            ComputeWage();
+            ComputeWage("DMart",20,25,100);
+            ComputeWage("Big Bazaar", 10, 20, 80);
         }
-        public static int getEmployeeHrs()
+        public static int GetEmployeeHrs()
         {
             int empHrs = 0;
-            int totalEmpHrs = 0;
-            int i = 0;
-
             Random random = new Random();
+            int empCheck = random.Next(0, 3);
 
-            while (i < MONTHLY_WORKING_DAYS && totalEmpHrs < MAX_WORKING_HOURS)
+            switch (empCheck)
             {
-                int empCheck = random.Next(0, 3);
-
-                switch (empCheck)
-                {
-                    case 0:
-                        Console.WriteLine("Employee is absent");
-                        empHrs = 0;
-                        break;
-                    case 1:
-                        Console.WriteLine("Employee is present part-time");
-                        empHrs = 4;
-                        break;
-                    case 2:
-                        Console.WriteLine("Employee is present full-time");
-                        empHrs = 8;
-                        break;
-                    default:
-                        Console.WriteLine("No such Employee");
-                        break;
-                }
-                i++;
-                totalEmpHrs = totalEmpHrs + empHrs;
+                case 0:
+                    empHrs = 0;
+                    break;
+                case 1:                 
+                    empHrs = 4;
+                    break;
+                case 2:                   
+                    empHrs = 8;
+                    break;
+                default:
+                    Console.WriteLine("No such Employee");
+                    empHrs = 0;
+                    break;
             }
-            return totalEmpHrs;
+            return empHrs;
         }
-        public static void ComputeWage()
+        public static void ComputeWage(String company, int empRate, int noOfWorkingDays, int maxWorkingHrs)
         {
-            int totalEmpHrs = getEmployeeHrs();
-            int empWage = totalEmpHrs * EMP_RATE_PER_HOUR;
-            Console.WriteLine("Total Working Hours :" + totalEmpHrs);
-            Console.WriteLine("Monthly Employee Wage:" + empWage);
-
+            int i = 0;
+            int totalEmpHrs = 0;
+            int totalWorkingDays = 0;
+            while(i < noOfWorkingDays && totalEmpHrs <= maxWorkingHrs)
+            {
+                totalEmpHrs = totalEmpHrs + GetEmployeeHrs();
+                i++;
+            }
+            double empWage = totalEmpHrs * empRate;
+            Console.WriteLine("Total Employee Hrs :" + totalEmpHrs);
+            Console.WriteLine("Employee Wage for company " + company + " is " + empWage);
         }
     }
 }
