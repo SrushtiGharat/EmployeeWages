@@ -57,10 +57,13 @@ namespace EmployeeWages
         {
             int i = 0;
             int totalEmpHrs = 0;
+            int empHr = 0;
 
             while (i < company.noOfWorkingDays && totalEmpHrs < company.maxWorkingHrs)
             {
-                totalEmpHrs = totalEmpHrs + GetEmployeeHrs();
+                empHr = GetEmployeeHrs();
+                totalEmpHrs = totalEmpHrs + empHr;
+                int dailyWage = empHr * company.empRatePerHour;
                 i++;
             }
             int empWage = totalEmpHrs * company.empRatePerHour;

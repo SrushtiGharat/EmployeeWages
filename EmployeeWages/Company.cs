@@ -18,6 +18,7 @@ namespace EmployeeWages
             this.empRatePerHour = empRatePerHour;
             this.noOfWorkingDays = noOfWorkingDays;
             this.maxWorkingHrs = maxWorkingHrs;
+            totalEmpWage = 0;
         }
         public void setTotalEmpWage(int totalEmpWage)
         {
