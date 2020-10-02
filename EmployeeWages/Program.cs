@@ -31,18 +31,19 @@ namespace EmployeeWages
     {
         public const int IS_FULL_TIME = 2;
         public const int IS_PART_TIME = 1;
+        int noOfCompanies = 0;
 
-        List<Company> companyList;
+        Company[] companyList;
 
         public EmployeeWageBuilder()
         {
-            companyList = new List<Company>();
+            companyList = new Company[5];
         }
 
         public void AddCompany(string companyName, int empRatePerHour, int noOfWorkingDays, int maxWorkingHrs)
         {
-            Company c = new Company(companyName, empRatePerHour, noOfWorkingDays, maxWorkingHrs);
-            companyList.Add(c);
+            companyList[noOfCompanies] = new Company(companyName, empRatePerHour, noOfWorkingDays, maxWorkingHrs);
+            noOfCompanies++;
         }
         public int GetEmployeeHrs()
         {
@@ -71,7 +72,7 @@ namespace EmployeeWages
 
         public void ComputeWage()
         {
-            for(int i = 0;i < companyList.Count; i++)
+            for(int i = 0;i < noOfCompanies; i++)
             {
                 companyList[i].setTotalEmpWage(ComputeWage(companyList[i]));
                              
