@@ -23,5 +23,9 @@ namespace EmployeeWages
         {
             this.totalEmpWage = totalEmpWage;
         }
+        public void print()
+        {
+            Console.WriteLine("Employee Wage for company " + companyName + " is " + totalEmpWage);
+        }
     }
 }

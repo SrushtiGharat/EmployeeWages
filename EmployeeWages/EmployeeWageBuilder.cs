@@ -11,16 +11,24 @@ namespace EmployeeWages
         public const int IS_PART_TIME = 1;
 
         List<Company> companyList;
+        Dictionary<string, Company> companyToWage;
 
         public EmployeeWageBuilder()
         {
             companyList = new List<Company>();
+            companyToWage = new Dictionary<string, Company>();
         }
 
         public void AddCompany(string companyName, int empRatePerHour, int noOfWorkingDays, int maxWorkingHrs)
         {
             Company c = new Company(companyName, empRatePerHour, noOfWorkingDays, maxWorkingHrs);
+            companyToWage.Add(companyName, c);
             companyList.Add(c);
+        }
+        public int getTotalWageByCompany(string companyName)
+        {
+            int totalWage = companyToWage[companyName].totalEmpWage;
+            return totalWage;
         }
         public int GetEmployeeHrs()
         {
@@ -66,8 +74,8 @@ namespace EmployeeWages
                 i++;
             }
             int empWage = totalEmpHrs * company.empRatePerHour;
-            Console.WriteLine("Total Employee Hrs :" + totalEmpHrs);
-            Console.WriteLine("Employee Wage for company " + company.companyName + " is " + empWage);
+            //Console.WriteLine("Total Employee Hrs :" + totalEmpHrs);
+            
             return empWage;
         }
     }

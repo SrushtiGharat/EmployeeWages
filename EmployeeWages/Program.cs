@@ -16,6 +16,10 @@ namespace EmployeeWages
             empWageBuilder.AddCompany("Walmart", 10, 20, 80);
             empWageBuilder.ComputeWage();
 
+            Console.WriteLine("Enter the company name to find Employee Wage");
+            string companyName = Console.ReadLine();
+            Console.WriteLine("The total Employee Wage for "+companyName+" is "+ empWageBuilder.getTotalWageByCompany(companyName));
+
         }
 
     }
