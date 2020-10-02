@@ -66,7 +66,7 @@ namespace EmployeeWages
         {
             Console.WriteLine("Welcome to Employee Wage Calculation Program");
             EmployeeWageBuilder dMart = new EmployeeWageBuilder("DMart", 20, 25, 100);
-            EmployeeWageBuilder bigBazaar = new EmployeeWageBuilder("Big Bazaar", 10, 20, 80);
+            EmployeeWageBuilder bigBazaar = new EmployeeWageBuilder("Walmart", 10, 20, 80);
             dMart.ComputeWage();
             bigBazaar.ComputeWage();
         }
